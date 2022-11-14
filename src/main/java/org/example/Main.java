@@ -66,6 +66,7 @@ public class Main {
             String[] userNumbers = userInput.split(" ");
             numbers[0] = Integer.valueOf(userNumbers[0]);
             numbers[1] = Integer.valueOf(userNumbers[1]);
+            if(numbers[1] == 0) throw new ArithmeticException();
             return numbers;
         }else if(arithmeticOperation  == ArithmeticOperation.SUM){
             userInput = userInput.replaceAll("\\+", " ");
