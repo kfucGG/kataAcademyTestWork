@@ -18,6 +18,12 @@ public class Main {
         this.multi = (a , b) -> a * b;
     }
 
+    public static void main(String[] args) {
+        String userInput = new Scanner(System.in).nextLine();
+        Main main = new Main();
+        String result = calc(userInput);
+        System.out.println(result);
+    }
     public static String calc(String userInput){
         ArithmeticOperation arithmeticOperation = getOperation(userInput);
         int[] numbers = getUserNumbers(userInput,arithmeticOperation);
@@ -41,8 +47,9 @@ public class Main {
         if(userInput.contains("-")) return ArithmeticOperation.DIFFERENCE;
         if(userInput.contains("*")) return ArithmeticOperation.MULTIPLICATION;
         if(userInput.contains("/")) return ArithmeticOperation.DIVISION;
-
-        return null;
+        else{
+            throw new ArithmeticException("Not arithmetical operation");
+        }
     }
 
     public static int[] getUserNumbers(String userInput, ArithmeticOperation arithmeticOperation){
@@ -66,7 +73,7 @@ public class Main {
             String[] userNumbers = userInput.split(" ");
             numbers[0] = Integer.valueOf(userNumbers[0]);
             numbers[1] = Integer.valueOf(userNumbers[1]);
-            if(numbers[1] == 0) throw new ArithmeticException();
+            if(numbers[1] == 0) throw new ArithmeticException("can not division on 0");
             return numbers;
         }else if(arithmeticOperation  == ArithmeticOperation.SUM){
             userInput = userInput.replaceAll("\\+", " ");
