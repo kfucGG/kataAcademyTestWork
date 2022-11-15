@@ -28,11 +28,7 @@ public class Main {
         this.multi = (a , b) -> a * b;
     }
 
-    public static void main(String[] args) {
-        Main main = new Main();
-        String result = calc(new Scanner(System.in).nextLine());
-        System.out.println(result);
-    }
+
 
     public static String romanCalculator(String[] numbers, ArithmeticOperation arithmeticOperation){
         int a = RomanCalculator.romanToNumber(numbers[0]);
@@ -55,18 +51,26 @@ public class Main {
         return null;
     }
 
-    public static boolean isRoman(String userInput){
+    public static void main(String[] args) {
+        Main main = new Main();
+        String result = calc(new Scanner(System.in).nextLine());
+        System.out.println(result);
+    }
+    public static int isRoman(String userInput){
+        int count = 0;
         for(int i = 0; i < roman.length; i++){
-            if(userInput.contains(roman[i])) return true;
+            if(userInput.contains(roman[i])) count++;
         }
-        return false;
+        return count;
     }
     public static String calc(String userInput){
         ArithmeticOperation arithmeticOperation = getOperation(userInput);
         String[] numbers = getUserNumbers(userInput,arithmeticOperation);
-
-        if(isRoman(userInput)){
+        if(numbers.length > 2) throw new ArithmeticException("More than 2 numbers");
+        if(isRoman(userInput) == 2){
             return romanCalculator(numbers, arithmeticOperation);
+        }else if(isRoman(userInput) == 1){
+            throw new ArithmeticException("One of numbers is arabic, one is rome . Incorrect");
         }
 
         Arrays.stream(numbers).forEach(a -> {
