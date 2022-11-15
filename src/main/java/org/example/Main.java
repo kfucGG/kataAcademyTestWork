@@ -56,12 +56,11 @@ public class Main {
         String result = calc(new Scanner(System.in).nextLine());
         System.out.println(result);
     }
-    public static int isRoman(String userInput){
+    public static int isRoman(String numbers[]){
         int count = 0;
-        String[] userNum = userInput.split(" ");
-        for(int i = 0; i < userNum.length ; i++){
+        for(int i = 0; i < numbers.length ; i++){
             for(int j = 0; j < roman.length; j++){
-                if(userNum[i].contains(roman[j])) count++;
+                if(numbers[i].contains(roman[j])) count++;
             }
         }
         return count;
@@ -70,9 +69,9 @@ public class Main {
         ArithmeticOperation arithmeticOperation = getOperation(userInput);
         String[] numbers = getUserNumbers(userInput,arithmeticOperation);
         if(numbers.length > 2) throw new ArithmeticException("More than 2 numbers");
-        if(isRoman(userInput) == 2){
+        if(isRoman(numbers) == 2){
             return romanCalculator(numbers, arithmeticOperation);
-        }else if(isRoman(userInput) == 1){
+        }else if(isRoman(numbers) == 1){
             throw new ArithmeticException("One of numbers is arabic, one is rome . Incorrect");
         }
 
