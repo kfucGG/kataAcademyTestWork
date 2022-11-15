@@ -58,8 +58,11 @@ public class Main {
     }
     public static int isRoman(String userInput){
         int count = 0;
-        for(int i = 0; i < roman.length; i++){
-            if(userInput.contains(roman[i])) count++;
+        String[] userNum = userInput.split(" ");
+        for(int i = 0; i < userNum.length ; i++){
+            for(int j = 0; j < roman.length; j++){
+                if(userNum[i].contains(roman[j])) count++;
+            }
         }
         return count;
     }
