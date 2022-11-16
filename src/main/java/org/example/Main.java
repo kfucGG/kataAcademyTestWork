@@ -34,7 +34,7 @@ public class Main {
         int a = RomanCalculator.romanToNumber(numbers[0]);
         int b = RomanCalculator.romanToNumber(numbers[1]);
 
-        if(a > 10 || b > 10) throw new ArithmeticException("Can not be bigger than 10");
+        if(a > 10 || a == -1 || b > 10 || b == -1) throw new ArithmeticException("Can not be bigger than 10");
         switch(arithmeticOperation){
             case DIVISION:
                 return RomanCalculator.convertNumToRoman(a / b);
@@ -69,7 +69,7 @@ public class Main {
         ArithmeticOperation arithmeticOperation = getOperation(userInput);
         String[] numbers = getUserNumbers(userInput,arithmeticOperation);
         if(numbers.length > 2) throw new ArithmeticException("More than 2 numbers");
-        if(isRoman(numbers) == 2){
+        if(isRoman(numbers) >= 2){
             return romanCalculator(numbers, arithmeticOperation);
         }else if(isRoman(numbers) == 1){
             throw new ArithmeticException("One of numbers is arabic, one is rome . Incorrect");
@@ -153,8 +153,7 @@ class RomanCalculator{
                 "LXXXI", "LXXXII", "LXXXIII", "LXXXIV", "LXXXV", "LXXXVI", "LXXXVII", "LXXXVIII", "LXXXIX", "XC",
                 "XCI", "XCII", "XCIII", "XCIV", "XCV", "XCVI", "XCVII", "XCVIII", "XCIX", "C"
         };
-        final String s = roman[numArabian];
-        return s;
+        return roman[numArabian];
     }
         public static int romanToNumber (String roman) {
         try {
