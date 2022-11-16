@@ -34,7 +34,7 @@ public class Main {
         int a = RomanCalculator.romanToNumber(numbers[0]);
         int b = RomanCalculator.romanToNumber(numbers[1]);
 
-        if(a > 10 || a == -1 || b > 10 || b == -1) throw new ArithmeticException("Can not be bigger than 10");
+        if(a > 10 || a == -1 || b > 10 || b == -1) throw new ArithmeticException();
         switch(arithmeticOperation){
             case DIVISION:
                 return RomanCalculator.convertNumToRoman(a / b);
@@ -42,7 +42,7 @@ public class Main {
                 return RomanCalculator.convertNumToRoman(a + b);
             case DIFFERENCE:
                 int difference = a - b;
-                if(difference < 0) throw new ArithmeticException("Roman result can not be smaller than 0");
+                if(difference < 0) throw new ArithmeticException();
                 return RomanCalculator.convertNumToRoman(a - b);
             case MULTIPLICATION:
                 return RomanCalculator.convertNumToRoman(a * b);
@@ -68,15 +68,15 @@ public class Main {
     public static String calc(String userInput){
         ArithmeticOperation arithmeticOperation = getOperation(userInput);
         String[] numbers = getUserNumbers(userInput,arithmeticOperation);
-        if(numbers.length > 2) throw new ArithmeticException("More than 2 numbers");
+        if(numbers.length > 2) throw new ArithmeticException();
         if(isRoman(numbers) >= 2){
             return romanCalculator(numbers, arithmeticOperation);
         }else if(isRoman(numbers) == 1){
-            throw new ArithmeticException("One of numbers is arabic, one is rome . Incorrect");
+            throw new ArithmeticException();
         }
 
         Arrays.stream(numbers).forEach(a -> {
-            if(Integer.valueOf(a) > 10) throw new ArithmeticException("Can not be bigger than 10");
+            if(Integer.valueOf(a) > 10) throw new ArithmeticException();
         });
         switch(arithmeticOperation){
             case DIVISION:
@@ -98,7 +98,7 @@ public class Main {
         if(userInput.contains("*")) return ArithmeticOperation.MULTIPLICATION;
         if(userInput.contains("/")) return ArithmeticOperation.DIVISION;
         else{
-            throw new ArithmeticException("Not arithmetical operation");
+            throw new ArithmeticException();
         }
     }
 
